@@ -1,7 +1,6 @@
 "use client";
 
-import CommentField from "@/app/components/Comment Field/CommentField";
-import DeleteCommentButton from "@/app/components/Comment Field/DeleteCommentButton";
+import CommentField from "@/app/components/comment_field/CommentField";
 
 type Props = {
   comments: string[];
@@ -10,7 +9,7 @@ type Props = {
   handleCommentDelete: (index: number) => void;
 };
 
-export default function DynamicPageCommentFieldView({
+export default function MovieDetailCommentsView({
   comments,
   handleSubmit,
   handleCommentChange,

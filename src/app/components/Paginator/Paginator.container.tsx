@@ -4,20 +4,20 @@ import PaginatorView from "./Paginator.view";
 
 type Props = {
   page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  limit: number;
+  route: string;
+  pagesCount: number;
 };
 
-export default function PaginatorContainer({ page, setPage, limit }: Props) {
-  const isFirstPage = page === 1;
-  const isLastPage = page >= limit / 2;
+export default function PaginatorContainer({ page, route, pagesCount }: Props) {
+  const isFirstPage = page == 1;
+  const isLastPage = page == pagesCount;
   return (
     <PaginatorView
       isFirstPage={isFirstPage}
       isLastPage={isLastPage}
-      setPage={setPage}
+      route={route}
       page={page}
-      limit={limit}
+      pagesCount={pagesCount}
     />
   );
 }

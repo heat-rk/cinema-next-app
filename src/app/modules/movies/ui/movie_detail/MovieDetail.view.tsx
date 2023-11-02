@@ -1,10 +1,10 @@
-import { IMovie } from "@/app/modules/Movie List/domain/IMovie";
+import { Movie } from "../../data/MoviesResponse";
 
 type Props = {
-  movie: IMovie;
+  movie: Movie;
 };
 
-export default function DynamicPageView({ movie }: Props) {
+export default function MovieDetailView({ movie }: Props) {
   return (
     <div className="bg-gray-900 p-4 rounded-lg shadow-md">
       <div className="flex items-center">

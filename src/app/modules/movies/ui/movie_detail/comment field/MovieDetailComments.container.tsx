@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import DynamicPageCommentFieldView from "./DynamicPageCommentField.view";
+import MovieDetailCommentsView from "./MovieDetailComments.view";
 
 type Props = {
   movieID: number;
 };
 
-export default function DynamicPageCommentFieldContainer({ movieID }: Props) {
+export default function MovieDetailCommentsContainer({ movieID }: Props) {
   const [comments, setComments] = useState<string[]>([]);
   const [commentText, setCommentText] = useState("");
 
@@ -53,7 +53,7 @@ export default function DynamicPageCommentFieldContainer({ movieID }: Props) {
   };
 
   return (
-    <DynamicPageCommentFieldView
+    <MovieDetailCommentsView
       comments={comments}
       handleSubmit={addComment}
       handleCommentChange={handleCommentChange}

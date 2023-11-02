@@ -1,8 +1,8 @@
-import { IMovie } from "../domain/IMovie";
-import MovieItemView from "./MovieItem.view";
+import { Movie } from "../../data/MoviesResponse";
+import MovieListItemView from "./MovieListItem.view";
 
 type Props = {
-  movies: IMovie[];
+  movies: Movie[];
 };
 
 export default function MovieListView({ movies }: Props) {
@@ -10,7 +10,7 @@ export default function MovieListView({ movies }: Props) {
     <ul>
       {movies?.map((movie) => (
         <li key={movie.id} className="p-2">
-          <MovieItemView movie={movie} />
+          <MovieListItemView movie={movie} />
         </li>
       ))}
     </ul>

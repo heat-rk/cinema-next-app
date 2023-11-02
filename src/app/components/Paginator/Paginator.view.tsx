@@ -1,23 +1,27 @@
+import { useRouter } from 'next/navigation'
+
 type Props = {
   isFirstPage: boolean;
   isLastPage: boolean;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  route: string,
   page: number;
-  limit: number;
+  pagesCount: number;
 };
 
 export default function PaginatorView({
   isFirstPage,
   isLastPage,
-  setPage,
+  route,
   page,
-  limit,
+  pagesCount,
 }: Props) {
+  const router = useRouter()
+
   return (
     <div className="flex flex-col items-center">
       <div className="flex gap-2">
         <button
-          onClick={() => setPage((p: number) => p - 1)}
+          onClick={() => router.push(`${route}?page=${Math.max(1, page - 1)}`)}
           disabled={isFirstPage}
           className="rounded-lg p-4 bg-gray-900 max-w-screen-xl mx-auto"
         >
@@ -25,11 +29,11 @@ export default function PaginatorView({
         </button>
 
         <div>
-          {page} / {limit / 2}
+          {page} / {pagesCount}
         </div>
 
         <button
-          onClick={() => setPage((p: number) => p + 1)}
+          onClick={() => router.push(`${route}?page=${Math.min(page + 1, pagesCount)}`)}
           disabled={isLastPage}
           className="rounded-lg p-4 bg-gray-900 max-w-screen-xl mx-auto"
         >

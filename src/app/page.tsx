@@ -1,7 +1,7 @@
 "use client";
 
-import MovieListContainer from "./modules/Movie List/application/MovieList.container";
+import MovieListContainer from "./modules/movies/ui/movies_list/MovieList.container";
 
 export default function Home() {
-  return <MovieListContainer />;
+  return <MovieListContainer page={1} />;
 }
