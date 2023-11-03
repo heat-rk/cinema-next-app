@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
-import { MoviesApiService } from '../modules/movies/data/MoviesApiService';
+import { MoviesApiService } from '../modules/movies/data/movies/MoviesApiService';
 import { MoviesRepository } from '../modules/movies/domain/MoviesRepository';
-import { MoviesRepositoryImpl } from '../modules/movies/data/MoviesRepositoryImpl';
+import { MoviesRepositoryImpl } from '../modules/movies/data/movies/MoviesRepositoryImpl';
 import { DiContainer } from '../di/DiContainer';
 import { AppDiContainer } from '../di/AppDiContainer';
 

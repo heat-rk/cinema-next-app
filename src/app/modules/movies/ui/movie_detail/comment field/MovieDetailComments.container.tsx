@@ -2,62 +2,61 @@
 
 import { useEffect, useState } from "react";
 import MovieDetailCommentsView from "./MovieDetailComments.view";
+import { diContainer } from "@/app/pages/_app";
+import { CommentEntity } from "../../../data/comments/CommentEntity";
 
 type Props = {
   movieID: number;
 };
 
 export default function MovieDetailCommentsContainer({ movieID }: Props) {
-  const [comments, setComments] = useState<string[]>([]);
-  const [commentText, setCommentText] = useState("");
+  const commentsRepository = diContainer.useCommentsRepository();
+  const [comments, setComments] = useState<CommentEntity[]>([]);
+  const [enteredComment, setEnteredComment] = useState<string>("");
 
   useEffect(() => {
-    const storedComments = JSON.parse(localStorage.getItem("comments") || "{}");
-    if (storedComments[movieID]) {
-      setComments(storedComments[movieID]);
-    }
+    commentsRepository.getComments(movieID)
+      .then(comments => setComments(comments));
   }, [movieID]);
 
-  const addComment = () => {
-    if (commentText.trim() === "") {
+  const onCommentSubmit = () => {
+    if (enteredComment.trim() === "") {
       return;
     }
-    const updatedComments = [...comments, commentText];
-    setComments(updatedComments);
-    updateLocalStorageComments(movieID, updatedComments);
-    setCommentText("");
+
+    commentsRepository.saveComment(
+      movieID,
+      enteredComment,
+      new Date(),
+    ).then(savedComment => {
+      commentsRepository.getComments(movieID)
+        .then(comments => setComments(comments));
+    });
+
+    setEnteredComment("");
   };
 
-  const deleteComment = (index: number) => {
-    const updatedComments = [...comments];
-    updatedComments.splice(index, 1);
-    setComments(updatedComments);
-    updateLocalStorageComments(movieID, updatedComments);
+  const onCommentDelete = (commentId: number) => {
+    commentsRepository.deleteComment(commentId)
+      .then(deletedComment => {
+        commentsRepository.getComments(movieID)
+          .then(comments => setComments(comments));
+      });
   };
 
-  const updateLocalStorageComments = (
-    movieID: number,
-    updatedComments: string[],
+  const onCommentChange = (
+    text: string,
   ) => {
-    const commentsFromLocalStorage = JSON.parse(
-      localStorage.getItem("comments") || "{}",
-    );
-    commentsFromLocalStorage[movieID] = updatedComments;
-    localStorage.setItem("comments", JSON.stringify(commentsFromLocalStorage));
-  };
-
-  const handleCommentChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    setCommentText(event.target.value);
+    setEnteredComment(text);
   };
 
   return (
     <MovieDetailCommentsView
       comments={comments}
-      handleSubmit={addComment}
-      handleCommentChange={handleCommentChange}
-      handleCommentDelete={deleteComment}
+      enteredComment={enteredComment}
+      onCommentSubmit={onCommentSubmit}
+      onCommentChange={onCommentChange}
+      onCommentDelete={onCommentDelete}
     />
   );
 }

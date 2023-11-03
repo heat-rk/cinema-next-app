@@ -1,19 +1,22 @@
 "use client";
 
 import CommentField from "@/app/components/comment_field/CommentField";
+import { CommentEntity } from "../../../data/comments/CommentEntity";
 
 type Props = {
-  comments: string[];
-  handleSubmit: () => void;
-  handleCommentChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  handleCommentDelete: (index: number) => void;
+  comments: CommentEntity[];
+  enteredComment: string;
+  onCommentSubmit: () => void;
+  onCommentChange: (text: string) => void;
+  onCommentDelete: (id: number) => void;
 };
 
 export default function MovieDetailCommentsView({
   comments,
-  handleSubmit,
-  handleCommentChange,
-  handleCommentDelete,
+  enteredComment,
+  onCommentSubmit: handleSubmit,
+  onCommentChange: handleCommentChange,
+  onCommentDelete: handleCommentDelete,
 }: Props) {
   return (
     <div className="bg-gray-900 p-4 rounded-lg shadow-md mt-4">
@@ -24,8 +27,9 @@ export default function MovieDetailCommentsView({
         <label className="text-white">Your Comment</label>
         <textarea
           rows={4}
+          value={enteredComment}
           className="w-full bg-gray-800 text-white p-2 rounded-md"
-          onChange={handleCommentChange}
+          onChange={ event => handleCommentChange(event.target.value) }
         />
       </div>
       <button
@@ -43,9 +47,9 @@ export default function MovieDetailCommentsView({
               <li key={index}>
                 <CommentField
                   comment={comment}
-                  index={index}
-                  handleCommentDelete={handleCommentDelete}/>
-
+                  handleCommentDelete={() => {
+                    handleCommentDelete(comment.id)
+                  }}/>
                 <hr/>
               </li>
             ))}

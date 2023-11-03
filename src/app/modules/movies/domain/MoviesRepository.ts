@@ -1,4 +1,4 @@
-import { Movie, MoviesListResponseData } from "../data/MoviesResponse";
+import { Movie, MoviesListResponseData } from "../data/movies/MoviesResponse";
 
 export interface MoviesRepository {
     fetchMovieById(id: number): Promise<Movie>;

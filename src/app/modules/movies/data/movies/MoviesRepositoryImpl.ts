@@ -1,4 +1,4 @@
-import { MoviesRepository } from "../domain/MoviesRepository";
+import { MoviesRepository } from "../../domain/MoviesRepository";
 import { MoviesApiService } from "./MoviesApiService";
 import { Movie, MoviesListResponseData } from "./MoviesResponse";
 

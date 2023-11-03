@@ -1,23 +1,21 @@
+import { CommentEntity } from "@/app/modules/movies/data/comments/CommentEntity";
 import DeleteCommentButton from "./DeleteCommentButton";
 
 type Props = {
-    comment: string;
-    index: number;
-    handleCommentDelete: (e: number) => void;
+    comment: CommentEntity;
+    handleCommentDelete: () => void;
 };
 
 export default function CommentField(
     {
         comment,
-        index, 
         handleCommentDelete,
     } : Props
 ) {
     return <div className="flex flex-col">
-        {comment}
+        {comment.text}
 
         <DeleteCommentButton
-            index={index}
             handleCommentDelete={handleCommentDelete}
             className="w-0"
         />

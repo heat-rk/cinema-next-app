@@ -1,11 +1,10 @@
 "use client";
 
 import MovieDetailCommentsContainer from "@/app/modules/movies/ui/movie_detail/comment field/MovieDetailComments.container";
-import { MoviesRepository } from "../../domain/MoviesRepository";
 import MovieDetailView from "./MovieDetail.view";
 import { diContainer } from "@/app/pages/_app";
 import { useEffect, useState } from "react";
-import { Movie } from "../../data/MoviesResponse";
+import { Movie } from "../../data/movies/MoviesResponse";
 
 type Props = {
     params: {

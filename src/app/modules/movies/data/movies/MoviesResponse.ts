@@ -21,7 +21,7 @@ export interface MovieResponse {
     meta: Meta
 }
   
-  export interface MovieResponseData {
+export interface MovieResponseData {
     movie: Movie
 }
 

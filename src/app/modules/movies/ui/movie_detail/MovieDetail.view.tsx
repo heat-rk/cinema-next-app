@@ -1,4 +1,4 @@
-import { Movie } from "../../data/MoviesResponse";
+import { Movie } from "../../data/movies/MoviesResponse";
 
 type Props = {
   movie: Movie;

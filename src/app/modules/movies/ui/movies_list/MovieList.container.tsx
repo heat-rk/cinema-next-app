@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import MovieListView from "./MovieList.view";
 import PaginatorContainer from "@/app/components/paginator/Paginator.container";
 import { diContainer } from "@/app/pages/_app";
-import { Movie } from "../../data/MoviesResponse";
+import { Movie } from "../../data/movies/MoviesResponse";
 
 type Props = {
 	page: number
