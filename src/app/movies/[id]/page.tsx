@@ -7,5 +7,5 @@ type Props = {
 };
 
 export default function MovieDetailPage({ params }: Props) {
-    return <MovieDetailContainer params={params} />
+    return <MovieDetailContainer id={params.id} />
 }

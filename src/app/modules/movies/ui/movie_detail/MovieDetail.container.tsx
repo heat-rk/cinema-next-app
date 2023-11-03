@@ -7,18 +7,16 @@ import { useEffect, useState } from "react";
 import { Movie } from "../../data/movies/MoviesResponse";
 
 type Props = {
-    params: {
-        id: number;
-    };
+    id: number;
 };
 
-export default function MovieDetailContainer({ params }: Props) {
+export default function MovieDetailContainer({ id }: Props) {
     const repository = diContainer.useMoviesRepository();
 
     const [movie, setMovie] = useState<Movie>()
 
     useEffect(() => {
-        repository.fetchMovieById(params.id)
+        repository.fetchMovieById(id)
             .then(movie => setMovie(movie))
             .catch((err) => {
                 console.log(err.message);
@@ -29,7 +27,7 @@ export default function MovieDetailContainer({ params }: Props) {
         return (
             <>
                 <MovieDetailView movie={movie} />
-                <MovieDetailCommentsContainer movieID={params.id} />
+                <MovieDetailCommentsContainer movieID={id} />
             </>
         );
     } else {
