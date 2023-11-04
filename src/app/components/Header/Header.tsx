@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Header = () => {
+export default function Header() {
   return (
     <header className="bg-red-600 p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
@@ -14,5 +14,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;
