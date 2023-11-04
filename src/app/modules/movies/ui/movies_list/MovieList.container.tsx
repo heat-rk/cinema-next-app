@@ -16,9 +16,9 @@ export default function MovieListContainer({ page } : Props) {
 	const limit = 10;
 
 	const { isLoading, error, data } = useQuery(
-        ["movies_list", page, limit],
-        () => repository.fetchMovies(page, limit)
-    );
+		["movies_list", page, limit],
+		() => repository.fetchMovies(page, limit)
+	);
 
 	console.log(isLoading, error, data);
 
