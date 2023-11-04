@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import MovieListView from "./MovieList.view";
 import PaginatorContainer from "@/app/components/paginator/Paginator.container";
-import { Movie } from "../../data/movies/MoviesResponse";
 import { useInjection } from "@/app/pages/_app";
+import { useQuery } from "react-query";
+import Loader from "@/app/components/loader/Loader";
+import Error from "@/app/components/error/Error";
 
 type Props = {
 	page: number
@@ -14,27 +15,26 @@ export default function MovieListContainer({ page } : Props) {
 	const repository = useInjection().getMoviesRepository();
 	const limit = 10;
 
-	const [movies, setMovies] = useState<Movie[]>([]);
-	const [pagesCount, setPagesCount] = useState(0);
+	const { isLoading, error, data } = useQuery(
+        ["movies_list", page, limit],
+        () => repository.fetchMovies(page, limit)
+    );
 
-	useEffect(() => {
-		repository.fetchMovies(page, limit)
-			.then(response => {
-				setMovies(response.movies)
-				setPagesCount(Math.ceil(response.movie_count / response.limit))
-			})
-			.catch((err) => {
-			console.log(err.message);
-		});
-	}, [page])
+	console.log(isLoading, error, data);
 
-	return (
-		<>
-		<MovieListView movies={movies} />
+	if (isLoading) {
+		return <Loader />
+	}
+
+	if (error || !data) {
+		return <Error />
+	}
+
+	return <>
+		<MovieListView movies={data.movies} />
 		<PaginatorContainer 
 			page={page} 
 			route="/movies"
-			pagesCount={pagesCount} />
-		</>
-	);
+			pagesCount={Math.ceil(data.movie_count / data.limit)} />
+	</>
 }

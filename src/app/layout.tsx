@@ -11,11 +11,7 @@ export const metadata: Metadata = {
   description: "BVT2001 Kazykhanov Ramil The Red Cinema website.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <Provider>

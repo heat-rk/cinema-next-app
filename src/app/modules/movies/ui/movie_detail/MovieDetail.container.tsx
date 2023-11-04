@@ -2,9 +2,10 @@
 
 import MovieDetailCommentsContainer from "@/app/modules/movies/ui/movie_detail/comment field/MovieDetailComments.container";
 import MovieDetailView from "./MovieDetail.view";
-import { useEffect, useState } from "react";
-import { Movie } from "../../data/movies/MoviesResponse";
 import { useInjection } from "@/app/pages/_app";
+import { useQuery } from "react-query";
+import Loader from "@/app/components/loader/Loader";
+import Error from "@/app/components/error/Error";
 
 type Props = {
     id: number;
@@ -13,24 +14,21 @@ type Props = {
 export default function MovieDetailContainer({ id }: Props) {
     const repository = useInjection().getMoviesRepository();
 
-    const [movie, setMovie] = useState<Movie>()
+    const { isLoading, error, data } = useQuery(
+        "movie_detail",
+        () => repository.fetchMovieById(id)
+    );
 
-    useEffect(() => {
-        repository.fetchMovieById(id)
-            .then(movie => setMovie(movie))
-            .catch((err) => {
-                console.log(err.message);
-            });
-    }, [])
-
-    if (movie) {
-        return (
-            <>
-                <MovieDetailView movie={movie} />
-                <MovieDetailCommentsContainer movieID={id} />
-            </>
-        );
-    } else {
-        return <></>
+    if (isLoading) {
+        return <Loader />
     }
+
+    if (error || !data) {
+        return <Error />
+    }
+
+    return <>
+        <MovieDetailView movie={data} />
+        <MovieDetailCommentsContainer movieID={id} />
+    </>
 }
