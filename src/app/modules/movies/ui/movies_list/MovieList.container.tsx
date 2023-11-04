@@ -8,33 +8,34 @@ import Loader from "@/app/components/loader/Loader";
 import Error from "@/app/components/error/Error";
 
 type Props = {
-	page: number
-}
+  page: number;
+};
 
-export default function MovieListContainer({ page } : Props) {
-	const repository = useInjection().getMoviesRepository();
-	const limit = 10;
+export default function MovieListContainer({ page }: Props) {
+  const repository = useInjection().getMoviesRepository();
+  const limit = 10;
 
-	const { isLoading, error, data } = useQuery(
-		["movies_list", page, limit],
-		() => repository.fetchMovies(page, limit)
-	);
+  const { isLoading, error, data } = useQuery(
+    ["movies_list", page, limit],
+    () => repository.fetchMovies(page, limit),
+  );
 
-	console.log(isLoading, error, data);
+  if (isLoading) {
+    return <Loader />;
+  }
 
-	if (isLoading) {
-		return <Loader />
-	}
+  if (error || !data) {
+    return <Error />;
+  }
 
-	if (error || !data) {
-		return <Error />
-	}
-
-	return <>
-		<MovieListView movies={data.movies} />
-		<PaginatorContainer 
-			page={page} 
-			route="/movies"
-			pagesCount={Math.ceil(data.movie_count / data.limit)} />
-	</>
+  return (
+    <>
+      <MovieListView movies={data.movies} />
+      <PaginatorContainer
+        page={page}
+        route="/movies"
+        pagesCount={Math.ceil(data.movie_count / data.limit)}
+      />
+    </>
+  );
 }

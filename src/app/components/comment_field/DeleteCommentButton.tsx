@@ -12,7 +12,7 @@ export default function DeleteCommentButton({
       className={`text-red-500 cursor-pointer ${className}`}
       onClick={handleCommentDelete}
     >
-     Удалить
+      Удалить
     </button>
   );
 }

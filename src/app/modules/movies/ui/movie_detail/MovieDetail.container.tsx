@@ -8,27 +8,28 @@ import Loader from "@/app/components/loader/Loader";
 import Error from "@/app/components/error/Error";
 
 type Props = {
-    id: number;
+  id: number;
 };
 
 export default function MovieDetailContainer({ id }: Props) {
-    const repository = useInjection().getMoviesRepository();
+  const repository = useInjection().getMoviesRepository();
 
-    const { isLoading, error, data } = useQuery(
-        "movie_detail",
-        () => repository.fetchMovieById(id)
-    );
+  const { isLoading, error, data } = useQuery("movie_detail", () =>
+    repository.fetchMovieById(id),
+  );
 
-    if (isLoading) {
-        return <Loader />
-    }
+  if (isLoading) {
+    return <Loader />;
+  }
 
-    if (error || !data) {
-        return <Error />
-    }
+  if (error || !data) {
+    return <Error />;
+  }
 
-    return <>
-        <MovieDetailView movie={data} />
-        <MovieDetailCommentsContainer movieID={id} />
+  return (
+    <>
+      <MovieDetailView movie={data} />
+      <MovieDetailCommentsContainer movieID={id} />
     </>
+  );
 }

@@ -2,7 +2,6 @@
 
 import PaginatorView from "./Paginator.view";
 
-
 type Props = {
   page: number;
   route: string;

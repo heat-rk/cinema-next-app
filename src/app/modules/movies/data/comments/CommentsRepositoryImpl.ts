@@ -2,60 +2,61 @@ import { CommentsRepository } from "../../domain/CommentsRepository";
 import { CommentEntity } from "./CommentEntity";
 
 export class CommentsRepositoryImpl implements CommentsRepository {
-    async getComments(movieId: number): Promise<CommentEntity[]> {
-        return this.getAllComments()
-            .then((allComments) => allComments.filter(comment => comment.movieId == movieId));
-    }
+  async getComments(movieId: number): Promise<CommentEntity[]> {
+    return this.getAllComments().then((allComments) =>
+      allComments.filter((comment) => comment.movieId == movieId),
+    );
+  }
 
-    async saveComment(
-        movieId: number,
-        text: string, 
-        datetime: Date, 
-        authorName?: string | undefined, 
-        authorAvatar?: string | undefined,
-    ): Promise<CommentEntity> {
-        return this.getAllComments()
-            .then((allComments) => {
-                const foundId = allComments.at(-1)?.id;
+  async saveComment(
+    movieId: number,
+    text: string,
+    datetime: Date,
+    authorName?: string | undefined,
+    authorAvatar?: string | undefined,
+  ): Promise<CommentEntity> {
+    return this.getAllComments().then((allComments) => {
+      const foundId = allComments.at(-1)?.id;
 
-                const newComment: CommentEntity = {
-                    id: foundId != undefined ? (foundId + 1) : 0,
-                    movieId: movieId,
-                    text: text,
-                    datetime: datetime,
-                    authorName: authorName,
-                    authorAvatar: authorAvatar,
-                };
+      const newComment: CommentEntity = {
+        id: foundId != undefined ? foundId + 1 : 0,
+        movieId: movieId,
+        text: text,
+        datetime: datetime,
+        authorName: authorName,
+        authorAvatar: authorAvatar,
+      };
 
-                const newComments = [...allComments, newComment]
+      const newComments = [...allComments, newComment];
 
-                this.saveNewComments(newComments);
+      this.saveNewComments(newComments);
 
-                return newComment;
-            });
-    }
+      return newComment;
+    });
+  }
 
-    async deleteComment(id: number): Promise<CommentEntity> {
-        return this.getAllComments()
-            .then((allComments) => {
-                const indexToDelete = allComments.findIndex((item, index) => item.id == id);
+  async deleteComment(id: number): Promise<CommentEntity> {
+    return this.getAllComments().then((allComments) => {
+      const indexToDelete = allComments.findIndex(
+        (item) => item.id == id,
+      );
 
-                const itemToDelete = allComments[indexToDelete];
-                
-                if (indexToDelete != -1) {
-                    allComments.splice(indexToDelete, 1)
-                    this.saveNewComments(allComments);
-                }
+      const itemToDelete = allComments[indexToDelete];
 
-                return itemToDelete;
-            });
-    }
+      if (indexToDelete != -1) {
+        allComments.splice(indexToDelete, 1);
+        this.saveNewComments(allComments);
+      }
 
-    private async getAllComments(): Promise<CommentEntity[]> {
-        return await JSON.parse(localStorage.getItem("comments") || "[]");
-    }
+      return itemToDelete;
+    });
+  }
 
-    private async saveNewComments(comments: CommentEntity[]) {
-        localStorage.setItem("comments", JSON.stringify(comments));
-    }
+  private async getAllComments(): Promise<CommentEntity[]> {
+    return await JSON.parse(localStorage.getItem("comments") || "[]");
+  }
+
+  private async saveNewComments(comments: CommentEntity[]) {
+    localStorage.setItem("comments", JSON.stringify(comments));
+  }
 }

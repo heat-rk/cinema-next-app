@@ -29,7 +29,7 @@ export default function MovieDetailCommentsView({
           rows={4}
           value={enteredComment}
           className="w-full bg-gray-800 text-white p-2 rounded-md"
-          onChange={ event => handleCommentChange(event.target.value) }
+          onChange={(event) => handleCommentChange(event.target.value)}
         />
       </div>
       <button
@@ -48,9 +48,10 @@ export default function MovieDetailCommentsView({
                 <CommentField
                   comment={comment}
                   handleCommentDelete={() => {
-                    handleCommentDelete(comment.id)
-                  }}/>
-                <hr/>
+                    handleCommentDelete(comment.id);
+                  }}
+                />
+                <hr />
               </li>
             ))}
           </ul>

@@ -15,8 +15,9 @@ export default function MovieDetailCommentsContainer({ movieID }: Props) {
   const [enteredComment, setEnteredComment] = useState<string>("");
 
   useEffect(() => {
-    commentsRepository.getComments(movieID)
-      .then(comments => setComments(comments));
+    commentsRepository
+      .getComments(movieID)
+      .then((comments) => setComments(comments));
   }, [movieID]);
 
   const onCommentSubmit = () => {
@@ -24,29 +25,26 @@ export default function MovieDetailCommentsContainer({ movieID }: Props) {
       return;
     }
 
-    commentsRepository.saveComment(
-      movieID,
-      enteredComment,
-      new Date(),
-    ).then(savedComment => {
-      commentsRepository.getComments(movieID)
-        .then(comments => setComments(comments));
-    });
+    commentsRepository
+      .saveComment(movieID, enteredComment, new Date())
+      .then(() => {
+        commentsRepository
+          .getComments(movieID)
+          .then((comments) => setComments(comments));
+      });
 
     setEnteredComment("");
   };
 
   const onCommentDelete = (commentId: number) => {
-    commentsRepository.deleteComment(commentId)
-      .then(deletedComment => {
-        commentsRepository.getComments(movieID)
-          .then(comments => setComments(comments));
-      });
+    commentsRepository.deleteComment(commentId).then(() => {
+      commentsRepository
+        .getComments(movieID)
+        .then((comments) => setComments(comments));
+    });
   };
 
-  const onCommentChange = (
-    text: string,
-  ) => {
+  const onCommentChange = (text: string) => {
     setEnteredComment(text);
   };
 

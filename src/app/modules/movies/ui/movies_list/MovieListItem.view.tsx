@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Movie } from "../../data/movies/MoviesResponse";
 
 type Props = {
-	movie: Movie
-}
+  movie: Movie;
+};
 
 export default function MovieListItemView({ movie }: Props) {
   return (
