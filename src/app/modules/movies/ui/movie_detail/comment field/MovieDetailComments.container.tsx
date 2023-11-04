@@ -2,15 +2,15 @@
 
 import { useEffect, useState } from "react";
 import MovieDetailCommentsView from "./MovieDetailComments.view";
-import { diContainer } from "@/app/pages/_app";
 import { CommentEntity } from "../../../data/comments/CommentEntity";
+import { useInjection } from "@/app/pages/_app";
 
 type Props = {
   movieID: number;
 };
 
 export default function MovieDetailCommentsContainer({ movieID }: Props) {
-  const commentsRepository = diContainer.useCommentsRepository();
+  const commentsRepository = useInjection().getCommentsRepository();
   const [comments, setComments] = useState<CommentEntity[]>([]);
   const [enteredComment, setEnteredComment] = useState<string>("");
 
