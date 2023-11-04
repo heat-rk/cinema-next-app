@@ -2,20 +2,21 @@
 
 import MovieDetailCommentsContainer from "@/app/modules/movies/ui/movie_detail/comment field/MovieDetailComments.container";
 import MovieDetailView from "./MovieDetail.view";
-import { useInjection } from "@/app/pages/_app";
 import { useQuery } from "react-query";
 import Loader from "@/app/components/loader/Loader";
 import Error from "@/app/components/error/Error";
+import { useInjection } from "@/app/page";
 
 type Props = {
   id: number;
 };
 
-export default function MovieDetailContainer({ id }: Props) {
-  const repository = useInjection().getMoviesRepository();
-
+export default function MovieDetailContainer(
+  { id }: Props,
+  { moviesRepository = useInjection().getMoviesRepository() }
+) {
   const { isLoading, error, data } = useQuery("movie_detail", () =>
-    repository.fetchMovieById(id),
+    moviesRepository.fetchMovieById(id),
   );
 
   if (isLoading) {

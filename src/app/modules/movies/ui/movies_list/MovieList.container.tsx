@@ -2,22 +2,24 @@
 
 import MovieListView from "./MovieList.view";
 import PaginatorContainer from "@/app/components/paginator/Paginator.container";
-import { useInjection } from "@/app/pages/_app";
 import { useQuery } from "react-query";
 import Loader from "@/app/components/loader/Loader";
 import Error from "@/app/components/error/Error";
+import { useInjection } from "@/app/page";
 
 type Props = {
   page: number;
 };
 
-export default function MovieListContainer({ page }: Props) {
-  const repository = useInjection().getMoviesRepository();
+export default function MovieListContainer(
+	{ page }: Props,
+	{ moviesRepository = useInjection().getMoviesRepository() }
+) {
   const limit = 10;
 
   const { isLoading, error, data } = useQuery(
     ["movies_list", page, limit],
-    () => repository.fetchMovies(page, limit),
+		() => moviesRepository.fetchMovies(page, limit),
   );
 
   if (isLoading) {
