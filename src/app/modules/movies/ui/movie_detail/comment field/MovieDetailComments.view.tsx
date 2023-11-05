@@ -19,12 +19,12 @@ export default function MovieDetailCommentsView({
   onCommentDelete: handleCommentDelete,
 }: Props) {
   return (
-    <div className="bg-gray-900 p-4 rounded-lg shadow-md mt-4">
+    <div className="bg-gray-900 p-8 rounded-lg shadow-md mt-4">
       <h2 className="text-2xl font-semibold text-white mb-2">
         Leave a Comment
       </h2>
       <div className="mb-4">
-        <label className="text-white">Your Comment</label>
+        <label className="text-gray-400 text-lg">Your Comment</label>
         <textarea
           rows={4}
           value={enteredComment}
