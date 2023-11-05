@@ -28,7 +28,7 @@ export default function MovieDetailCommentsContainer(
     }
 
     commentsRepository
-      .saveComment(movieID, enteredComment, Date())
+      .saveComment(movieID, enteredComment, new Date().getTime())
       .then(() => {
         commentsRepository
           .getComments(movieID)
