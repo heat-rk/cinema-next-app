@@ -11,7 +11,7 @@ export class CommentsRepositoryImpl implements CommentsRepository {
   async saveComment(
     movieId: number,
     text: string,
-    datetime: Date,
+    datetime: string,
     authorName?: string | undefined,
     authorAvatar?: string | undefined,
   ): Promise<CommentEntity> {

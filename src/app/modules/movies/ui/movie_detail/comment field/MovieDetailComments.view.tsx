@@ -28,7 +28,7 @@ export default function MovieDetailCommentsView({
         <textarea
           rows={4}
           value={enteredComment}
-          className="w-full bg-gray-800 text-white p-2 rounded-md"
+          className="w-full bg-gray-800 text-white p-2 rounded-md mt-4"
           onChange={(event) => handleCommentChange(event.target.value)}
         />
       </div>
@@ -40,9 +40,9 @@ export default function MovieDetailCommentsView({
       </button>
 
       {comments.length > 0 && (
-        <div className="mt-4">
+        <div className="mt-8">
           <h2 className="text-2xl font-semibold text-white">Comments</h2>
-          <ul className="text-gray-400">
+          <ul className="text-gray-400 mt-2">
             {comments.map((comment, index) => (
               <li key={index}>
                 <CommentField

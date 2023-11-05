@@ -2,7 +2,7 @@ export interface CommentEntity {
   id: number;
   movieId: number;
   text: string;
-  datetime: Date;
+  datetime: string;
   authorName?: string;
   authorAvatar?: string;
 }

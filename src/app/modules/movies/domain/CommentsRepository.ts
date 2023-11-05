@@ -6,7 +6,7 @@ export interface CommentsRepository {
   saveComment(
     movieId: number,
     text: string,
-    datetime: Date,
+    datetime: string,
     authorName?: string,
     authorAvatar?: string,
   ): Promise<CommentEntity>;
