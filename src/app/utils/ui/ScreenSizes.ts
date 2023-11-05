@@ -1,1 +1,1 @@
-export const LARGE_SCREEN_MIN_WIDTH = 600
+export const LARGE_SCREEN_MIN_WIDTH = 600;

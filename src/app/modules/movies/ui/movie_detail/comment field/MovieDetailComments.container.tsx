@@ -11,7 +11,7 @@ type Props = {
 
 export default function MovieDetailCommentsContainer(
   { movieID }: Props,
-  { commentsRepository = useInjection().getCommentsRepository() }
+  { commentsRepository = useInjection().getCommentsRepository() },
 ) {
   const [comments, setComments] = useState<CommentEntity[]>([]);
   const [enteredComment, setEnteredComment] = useState<string>("");

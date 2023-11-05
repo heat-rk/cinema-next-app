@@ -24,7 +24,8 @@ export default function PaginatorView({
         <Arrow
           direction={ArrowDirection.Left}
           className={`${isFirstPage ? "invisible" : "visible"} mr-4`}
-          onClick={() => router.push(`${route}?page=${Math.max(1, page - 1)}`)} />
+          onClick={() => router.push(`${route}?page=${Math.max(1, page - 1)}`)}
+        />
 
         <div>
           {page} / {pagesCount}
@@ -33,7 +34,10 @@ export default function PaginatorView({
         <Arrow
           direction={ArrowDirection.Right}
           className={`${isLastPage ? "invisible" : "visible"} ml-4`}
-          onClick={() => router.push(`${route}?page=${Math.min(page + 1, pagesCount)}`)} />
+          onClick={() =>
+            router.push(`${route}?page=${Math.min(page + 1, pagesCount)}`)
+          }
+        />
       </div>
     </div>
   );

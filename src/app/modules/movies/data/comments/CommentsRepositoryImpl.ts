@@ -4,8 +4,12 @@ import { CommentEntity } from "./CommentEntity";
 export class CommentsRepositoryImpl implements CommentsRepository {
   async getComments(movieId: number): Promise<CommentEntity[]> {
     return this.getAllComments()
-      .then((allComments) => allComments.filter((comment) => comment.movieId == movieId))
-      .then((movieComments) => movieComments.sort((a, b) => a.datetime > b.datetime ? -1 : 1));
+      .then((allComments) =>
+        allComments.filter((comment) => comment.movieId == movieId),
+      )
+      .then((movieComments) =>
+        movieComments.sort((a, b) => (a.datetime > b.datetime ? -1 : 1)),
+      );
   }
 
   async saveComment(
@@ -37,9 +41,7 @@ export class CommentsRepositoryImpl implements CommentsRepository {
 
   async deleteComment(id: number): Promise<CommentEntity> {
     return this.getAllComments().then((allComments) => {
-      const indexToDelete = allComments.findIndex(
-        (item) => item.id == id,
-      );
+      const indexToDelete = allComments.findIndex((item) => item.id == id);
 
       const itemToDelete = allComments[indexToDelete];
 

@@ -12,14 +12,14 @@ type Props = {
 };
 
 export default function MovieListContainer(
-	{ page }: Props,
-	{ moviesRepository = useInjection().getMoviesRepository() }
+  { page }: Props,
+  { moviesRepository = useInjection().getMoviesRepository() },
 ) {
   const limit = 10;
 
   const { isLoading, error, data } = useQuery(
     ["movies_list", page, limit],
-		() => moviesRepository.fetchMovies(page, limit),
+    () => moviesRepository.fetchMovies(page, limit),
   );
 
   if (isLoading) {

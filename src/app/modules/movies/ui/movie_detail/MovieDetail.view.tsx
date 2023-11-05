@@ -1,6 +1,6 @@
 import { LARGE_SCREEN_MIN_WIDTH } from "@/app/utils/ui/ScreenSizes";
 import { Movie } from "../../data/movies/MoviesResponse";
-import MediaQuery from 'react-responsive'
+import MediaQuery from "react-responsive";
 
 type Props = {
   movie: Movie;

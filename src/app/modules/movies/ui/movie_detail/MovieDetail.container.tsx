@@ -13,11 +13,10 @@ type Props = {
 
 export default function MovieDetailContainer(
   { id }: Props,
-  { moviesRepository = useInjection().getMoviesRepository() }
+  { moviesRepository = useInjection().getMoviesRepository() },
 ) {
-  const { isLoading, error, data } = useQuery(
-    ["movie_detail", id], 
-    () => moviesRepository.fetchMovieById(id),
+  const { isLoading, error, data } = useQuery(["movie_detail", id], () =>
+    moviesRepository.fetchMovieById(id),
   );
 
   if (isLoading) {
