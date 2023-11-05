@@ -1,4 +1,5 @@
 import { useRouter } from "next/navigation";
+import Arrow, { ArrowDirection } from "../arrows/Arrow";
 
 type Props = {
   isFirstPage: boolean;
@@ -18,29 +19,21 @@ export default function PaginatorView({
   const router = useRouter();
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex gap-2">
-        <button
-          onClick={() => router.push(`${route}?page=${Math.max(1, page - 1)}`)}
-          disabled={isFirstPage}
-          className="rounded-lg p-4 bg-gray-900 max-w-screen-xl mx-auto"
-        >
-          Back
-        </button>
+    <div className="flex flex-col">
+      <div className="flex gap-2 items-center justify-center">
+        <Arrow
+          direction={ArrowDirection.Left}
+          className={`${isFirstPage ? "invisible" : "visible"} mr-4`}
+          onClick={() => router.push(`${route}?page=${Math.max(1, page - 1)}`)} />
 
         <div>
           {page} / {pagesCount}
         </div>
 
-        <button
-          onClick={() =>
-            router.push(`${route}?page=${Math.min(page + 1, pagesCount)}`)
-          }
-          disabled={isLastPage}
-          className="rounded-lg p-4 bg-gray-900 max-w-screen-xl mx-auto"
-        >
-          Next
-        </button>
+        <Arrow
+          direction={ArrowDirection.Right}
+          className={`${isLastPage ? "invisible" : "visible"} ml-4`}
+          onClick={() => router.push(`${route}?page=${Math.min(page + 1, pagesCount)}`)} />
       </div>
     </div>
   );
