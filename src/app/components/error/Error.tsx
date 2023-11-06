@@ -28,10 +28,10 @@ export default function Error() {
         <p className="mt-4 text-gray-500">Something went wrong :(.</p>
 
         <a
-          href="#"
-          className="inline-block px-5 py-3 mt-6 text-sm font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring"
+          href="/"
+          className="inline-block px-5 py-3 mt-6 text-sm font-medium text-white bg-red-600 rounded hover:bg-red-700 focus:outline-none focus:ring"
         >
-          Go Back
+          Go Home
         </a>
       </div>
     </div>
