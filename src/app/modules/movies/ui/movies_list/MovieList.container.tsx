@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import Loader from "@/app/components/loader/Loader";
 import Error from "@/app/components/error/Error";
 import { useInjection } from "@/app/page";
+import { useEffect } from "react";
 
 type Props = {
   page: number;
@@ -21,6 +22,14 @@ export default function MovieListContainer(
     ["movies_list", page, limit],
     () => moviesRepository.fetchMovies(page, limit),
   );
+
+  useEffect(
+    () => { window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    }) },
+    [page]
+  )
 
   if (isLoading) {
     return <Loader />;
