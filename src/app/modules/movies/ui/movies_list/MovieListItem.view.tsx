@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Movie } from "../../data/movies/MoviesResponse";
+import { Movie } from "../../domain/movies/Movie";
 
 type Props = {
   movie: Movie;
@@ -11,7 +11,7 @@ export default function MovieListItemView({ movie }: Props) {
       <Link href={`/movies/${movie.id}`}>
         <div className="mr-4">
           <img
-            src={movie.medium_cover_image}
+            src={movie.mediumCoverImage}
             alt={movie.title}
             className="w-24 h-auto rounded-lg"
           />

@@ -1,10 +1,10 @@
 "use client";
 
 import CommentField from "@/app/components/comment_field/CommentField";
-import { CommentEntity } from "../../../data/comments/CommentEntity";
+import { Comment } from "../../../domain/comments/Comment";
 
 type Props = {
-  comments: CommentEntity[];
+  comments: Comment[];
   enteredComment: string;
   onCommentSubmit: () => void;
   onCommentChange: (text: string) => void;

@@ -5,8 +5,8 @@ import { DiContainer } from "./di/DiContainer";
 import { CommentsRepositoryImpl } from "./modules/movies/data/comments/CommentsRepositoryImpl";
 import { MoviesApiService } from "./modules/movies/data/movies/MoviesApiService";
 import { MoviesRepositoryImpl } from "./modules/movies/data/movies/MoviesRepositoryImpl";
-import { CommentsRepository } from "./modules/movies/domain/CommentsRepository";
-import { MoviesRepository } from "./modules/movies/domain/MoviesRepository";
+import { CommentsRepository } from "./modules/movies/domain/comments/CommentsRepository";
+import { MoviesRepository } from "./modules/movies/domain/movies/MoviesRepository";
 import MovieListContainer from "./modules/movies/ui/movies_list/MovieList.container";
 
 const appDiContainer: DiContainer = new (class implements DiContainer {

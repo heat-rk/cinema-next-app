@@ -1,4 +1,4 @@
-import { Movie } from "../../data/movies/MoviesResponse";
+import { Movie } from "../../domain/movies/Movie";
 import MovieListItemView from "./MovieListItem.view";
 
 type Props = {

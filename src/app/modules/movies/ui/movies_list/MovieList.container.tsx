@@ -36,7 +36,7 @@ export default function MovieListContainer(
       <PaginatorContainer
         page={page}
         route="/movies"
-        pagesCount={Math.ceil(data.movie_count / data.limit)}
+        pagesCount={Math.ceil(data.movieCount / data.limit)}
       />
     </>
   );

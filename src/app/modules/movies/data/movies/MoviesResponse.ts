@@ -1,32 +1,30 @@
 // Movies List
-export interface MoviesListResponse {
+export interface MoviesListResponseDto {
   status: string;
   status_message: string;
-  data: MoviesListResponseData;
-  meta: Meta;
+  data: MoviesListResponseDataDto;
 }
 
-export interface MoviesListResponseData {
+export interface MoviesListResponseDataDto {
   movie_count: number;
   limit: number;
   page_number: number;
-  movies: Movie[];
+  movies: MovieDto[];
 }
 
 // Movie Details
-export interface MovieResponse {
+export interface MovieResponseDto {
   status: string;
   status_message: string;
-  data: MovieResponseData;
-  meta: Meta;
+  data: MovieResponseDataDto;
 }
 
-export interface MovieResponseData {
-  movie: Movie;
+export interface MovieResponseDataDto {
+  movie: MovieDto;
 }
 
 // Core
-export interface Movie {
+export interface MovieDto {
   id: number;
   url: string;
   imdb_code: string;
@@ -50,12 +48,12 @@ export interface Movie {
   medium_cover_image: string;
   large_cover_image: string;
   state: string;
-  torrents: Torrent[];
+  torrents: TorrentDto[];
   date_uploaded: string;
   date_uploaded_unix: number;
 }
 
-export interface Torrent {
+export interface TorrentDto {
   url: string;
   hash: string;
   quality: string;
@@ -70,11 +68,4 @@ export interface Torrent {
   size_bytes: number;
   date_uploaded: string;
   date_uploaded_unix: number;
-}
-
-export interface Meta {
-  server_time: number;
-  server_timezone: string;
-  api_version: number;
-  execution_time: string;
 }

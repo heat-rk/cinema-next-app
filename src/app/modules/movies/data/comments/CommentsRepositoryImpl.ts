@@ -1,14 +1,21 @@
-import { CommentsRepository } from "../../domain/CommentsRepository";
+import { Comment } from "../../domain/comments/Comment";
+import { CommentsRepository } from "../../domain/comments/CommentsRepository";
+import mapCommentDtoToDomain from "../../mappers/CommentMappers";
 import { CommentEntity } from "./CommentEntity";
 
 export class CommentsRepositoryImpl implements CommentsRepository {
-  async getComments(movieId: number): Promise<CommentEntity[]> {
+  async getComments(movieId: number): Promise<Comment[]> {
     return this.getAllComments()
       .then((allComments) =>
         allComments.filter((comment) => comment.movieId == movieId),
       )
       .then((movieComments) =>
         movieComments.sort((a, b) => (a.datetime > b.datetime ? -1 : 1)),
+      )
+      .then((sortedMovieComments) => 
+        sortedMovieComments.map(movieEntity => 
+          mapCommentDtoToDomain(movieEntity)
+        ),
       );
   }
 
@@ -18,7 +25,7 @@ export class CommentsRepositoryImpl implements CommentsRepository {
     datetime: number,
     authorName?: string | undefined,
     authorAvatar?: string | undefined,
-  ): Promise<CommentEntity> {
+  ): Promise<Comment> {
     return this.getAllComments().then((allComments) => {
       const foundId = allComments.at(-1)?.id;
 
@@ -35,11 +42,11 @@ export class CommentsRepositoryImpl implements CommentsRepository {
 
       this.saveNewComments(newComments);
 
-      return newComment;
+      return mapCommentDtoToDomain(newComment);
     });
   }
 
-  async deleteComment(id: number): Promise<CommentEntity> {
+  async deleteComment(id: number): Promise<Comment> {
     return this.getAllComments().then((allComments) => {
       const indexToDelete = allComments.findIndex((item) => item.id == id);
 
@@ -50,7 +57,7 @@ export class CommentsRepositoryImpl implements CommentsRepository {
         this.saveNewComments(allComments);
       }
 
-      return itemToDelete;
+      return mapCommentDtoToDomain(itemToDelete);
     });
   }
 
