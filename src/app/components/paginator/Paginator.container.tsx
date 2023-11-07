@@ -9,9 +9,10 @@ type Props = {
   pagesCount: number;
 };
 
-export default function PaginatorContainer({ page, route, pagesCount }: Props) {
-  const router = useRouter();
-
+export default function PaginatorContainer(
+  { page, route, pagesCount }: Props,
+  { router = useRouter() }
+) {
   const isFirstPage = page == 1;
   const isLastPage = page == pagesCount;
   
