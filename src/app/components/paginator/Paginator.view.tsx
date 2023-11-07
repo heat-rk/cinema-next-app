@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Arrow, { ArrowDirection } from "../arrows/Arrow";
 
 type Props = {
@@ -5,8 +6,8 @@ type Props = {
   isLastPage: boolean;
   page: number;
   pagesCount: number;
-  onNextPageClick: () => void;
-  onPreviousPageClick: () => void;
+  nextPageRoute: string;
+  previousPageRoute: string;
 };
 
 export default function PaginatorView({
@@ -14,27 +15,29 @@ export default function PaginatorView({
   isLastPage,
   page,
   pagesCount,
-  onNextPageClick,
-  onPreviousPageClick
+  nextPageRoute,
+  previousPageRoute
 }: Props) {
   return (
     <div className="flex flex-col">
       <div className="flex gap-2 items-center justify-center">
-        <Arrow
-          direction={ArrowDirection.Left}
-          className={`${isFirstPage ? "invisible" : "visible"} mr-4`}
-          onClick={onPreviousPageClick}
-        />
+        <Link href={previousPageRoute}>
+          <Arrow
+            direction={ArrowDirection.Left}
+            className={`${isFirstPage ? "invisible" : "visible"} mr-4`}
+          />
+        </Link>
 
         <div>
           {page} / {pagesCount}
         </div>
 
-        <Arrow
-          direction={ArrowDirection.Right}
-          className={`${isLastPage ? "invisible" : "visible"} ml-4`}
-          onClick={onNextPageClick}
-        />
+        <Link href={nextPageRoute}>
+          <Arrow
+            direction={ArrowDirection.Right}
+            className={`${isLastPage ? "invisible" : "visible"} ml-4`}
+          />
+        </Link>
       </div>
     </div>
   );

@@ -10,8 +10,7 @@ type Props = {
 };
 
 export default function PaginatorContainer(
-  { page, route, pagesCount }: Props,
-  { router = useRouter() }
+  { page, route, pagesCount }: Props
 ) {
   const isFirstPage = page == 1;
   const isLastPage = page == pagesCount;
@@ -22,8 +21,8 @@ export default function PaginatorContainer(
       isLastPage={isLastPage}
       page={page}
       pagesCount={pagesCount}
-      onNextPageClick={() => router.push(`${route}?page=${Math.min(page + 1, pagesCount)}`)}
-      onPreviousPageClick={() => router.push(`${route}?page=${Math.max(1, page - 1)}`)}
+      previousPageRoute={`${route}?page=${Math.max(1, page - 1)}`}
+      nextPageRoute={`${route}?page=${Math.min(page + 1, pagesCount)}`}
     />
   );
 }
