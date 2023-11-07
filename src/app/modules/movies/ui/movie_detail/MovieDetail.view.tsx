@@ -39,7 +39,7 @@ export default function MovieDetailView({ movie }: Props) {
               alt={movie?.title}
               className="w-64 h-auto rounded-lg"
             />
-            <div className="text-xl flex flex-col items-center">
+            <div className="mt-4 text-xl flex flex-col items-center">
               <h1 className="text-3xl font-bold text-white">{movie?.title}</h1>
               <p className="text-gray-400">{movie?.title_english}</p>
               <p className="text-gray-400">{movie?.year}</p>
