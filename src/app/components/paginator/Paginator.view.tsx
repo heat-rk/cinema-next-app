@@ -24,7 +24,8 @@ export default function PaginatorView({
         <Link href={previousPageRoute}>
           <Arrow
             direction={ArrowDirection.Left}
-            className={`${isFirstPage ? "invisible" : "visible"} mr-4`}
+            isVisible={!isFirstPage}
+            className={"mr-8"}
           />
         </Link>
 
@@ -35,7 +36,8 @@ export default function PaginatorView({
         <Link href={nextPageRoute}>
           <Arrow
             direction={ArrowDirection.Right}
-            className={`${isLastPage ? "invisible" : "visible"} ml-4`}
+            isVisible={!isLastPage}
+            className={"ml-8"}
           />
         </Link>
       </div>
