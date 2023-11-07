@@ -25,7 +25,7 @@ const appDiContainer: DiContainer = new (class implements DiContainer {
   }
 })();
 
-export const DIContext =
+const DIContext =
   React.createContext<Partial<DiContainer>>(appDiContainer);
 
 export const useInjection = (): DiContainer => {
