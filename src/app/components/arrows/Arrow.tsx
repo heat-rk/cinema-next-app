@@ -6,11 +6,10 @@ export enum ArrowDirection {
 type Props = {
   direction: ArrowDirection;
   className: string;
-  isVisible: boolean;
 };
 
-export default function Arrow({ direction, className = "", isVisible }: Props) {
-  if (direction == ArrowDirection.Left && isVisible) {
+export default function Arrow({ direction, className = "" }: Props) {
+  if (direction == ArrowDirection.Left) {
     return (
       <div className={`${className} p-4`}>
         <svg 
@@ -21,7 +20,7 @@ export default function Arrow({ direction, className = "", isVisible }: Props) {
         </svg>
       </div>
     );
-  } else if (direction == ArrowDirection.Right && isVisible) {
+  } else if (direction == ArrowDirection.Right) {
     return (
       <div className={`${className} p-4`}>
         <svg 
@@ -33,6 +32,6 @@ export default function Arrow({ direction, className = "", isVisible }: Props) {
       </div>
     );
   } else {
-    return <div className={`${className} w-16 h-14`} />;
+    return null;
   }
 }
