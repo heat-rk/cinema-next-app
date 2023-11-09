@@ -1,4 +1,4 @@
-export default function dateToFullString(date: Date): string {
+export function dateToFullString(date: Date): string {
   return date.toLocaleString("en-US", {
     day: "numeric",
     month: "long",

@@ -1,5 +1,5 @@
 import DeleteCommentButton from "./DeleteCommentButton";
-import dateToFullString from "@/app/utils/ui/DateUtils";
+import { dateToFullString } from "@/app/utils/ui/DateUtils";
 import AvatarImg from "../images/AvatarImg";
 import { Comment } from "@/app/modules/movies/domain/comments/Comment";
 
