@@ -23,13 +23,12 @@ export default function MovieListContainer(
     () => moviesRepository.fetchMovies(page, limit),
   );
 
-  useEffect(
-    () => { window.scrollTo({
+  useEffect(() => {
+    window.scrollTo({
       top: 0,
-      behavior: "instant"
-    }) },
-    [page]
-  )
+      behavior: "instant",
+    });
+  }, [page]);
 
   if (isLoading) {
     return <Loader />;

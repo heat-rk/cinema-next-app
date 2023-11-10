@@ -12,9 +12,9 @@ export class CommentsRepositoryImpl implements CommentsRepository {
       .then((movieComments) =>
         movieComments.sort((a, b) => (a.datetime > b.datetime ? -1 : 1)),
       )
-      .then((sortedMovieComments) => 
-        sortedMovieComments.map(movieEntity => 
-          mapCommentDtoToDomain(movieEntity)
+      .then((sortedMovieComments) =>
+        sortedMovieComments.map((movieEntity) =>
+          mapCommentDtoToDomain(movieEntity),
         ),
       );
   }

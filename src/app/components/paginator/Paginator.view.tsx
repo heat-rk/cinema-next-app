@@ -16,19 +16,18 @@ export default function PaginatorView({
   page,
   pagesCount,
   nextPageRoute,
-  previousPageRoute
+  previousPageRoute,
 }: Props) {
-  const arrowPlaceholder = (<div className="mr-8 w-16 h-14" />);
+  const arrowPlaceholder = <div className="mr-8 w-16 h-14" />;
 
   return (
     <div className="flex flex-col">
       <div className="flex gap-2 items-center justify-center">
-        {isFirstPage ? arrowPlaceholder : (
+        {isFirstPage ? (
+          arrowPlaceholder
+        ) : (
           <Link href={previousPageRoute}>
-            <Arrow
-              direction={ArrowDirection.Left}
-              className={"mr-8"}
-            />
+            <Arrow direction={ArrowDirection.Left} className={"mr-8"} />
           </Link>
         )}
 
@@ -36,12 +35,11 @@ export default function PaginatorView({
           {page} / {pagesCount}
         </div>
 
-        {isLastPage ? arrowPlaceholder : (
+        {isLastPage ? (
+          arrowPlaceholder
+        ) : (
           <Link href={nextPageRoute}>
-            <Arrow
-              direction={ArrowDirection.Right}
-              className={"ml-8"}
-            />
+            <Arrow direction={ArrowDirection.Right} className={"ml-8"} />
           </Link>
         )}
       </div>

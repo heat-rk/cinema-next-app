@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import PaginatorView from "./Paginator.view";
 
 type Props = {
@@ -9,12 +8,10 @@ type Props = {
   pagesCount: number;
 };
 
-export default function PaginatorContainer(
-  { page, route, pagesCount }: Props
-) {
+export default function PaginatorContainer({ page, route, pagesCount }: Props) {
   const isFirstPage = page == 1;
   const isLastPage = page == pagesCount;
-  
+
   return (
     <PaginatorView
       isFirstPage={isFirstPage}

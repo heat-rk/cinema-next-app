@@ -9,7 +9,10 @@ export class MoviesApiService {
     ).then((response) => response.json());
   }
 
-  async fetchMovies(page: number, limit: number): Promise<MoviesListResponseDto> {
+  async fetchMovies(
+    page: number,
+    limit: number,
+  ): Promise<MoviesListResponseDto> {
     return await fetch(
       `https://yts.mx/api/v2/list_movies.json?page=${page}&limit=${limit}`,
     ).then((response) => response.json());

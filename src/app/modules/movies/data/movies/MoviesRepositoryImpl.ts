@@ -1,7 +1,10 @@
 import { Movie } from "../../domain/movies/Movie";
 import { MoviesList } from "../../domain/movies/MoviesList";
 import { MoviesRepository } from "../../domain/movies/MoviesRepository";
-import { mapMovieDtoToDomain, mapMoviesListDtoToDomain } from "../../mappers/MovieMappers";
+import {
+  mapMovieDtoToDomain,
+  mapMoviesListDtoToDomain,
+} from "../../mappers/MovieMappers";
 import { MoviesApiService } from "./MoviesApiService";
 
 export class MoviesRepositoryImpl implements MoviesRepository {
@@ -13,10 +16,7 @@ export class MoviesRepositoryImpl implements MoviesRepository {
       .then((response) => response.data.movie)
       .then((movieDto) => mapMovieDtoToDomain(movieDto));
   }
-  async fetchMovies(
-    page: number,
-    limit: number,
-  ): Promise<MoviesList> {
+  async fetchMovies(page: number, limit: number): Promise<MoviesList> {
     return await this.apiService
       .fetchMovies(page, limit)
       .then((response) => response.data)
