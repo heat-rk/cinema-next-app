@@ -5,7 +5,7 @@ import MovieDetailView from "./MovieDetail.view";
 import { useQuery } from "react-query";
 import Loader from "@/app/components/loader/Loader";
 import Error from "@/app/components/error/Error";
-import { useInjection } from "@/app/page";
+import { useInjection } from "@/app/di/DiContext";
 
 type Props = {
   id: number;

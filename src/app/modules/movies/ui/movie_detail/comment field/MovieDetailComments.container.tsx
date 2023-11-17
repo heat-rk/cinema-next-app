@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import MovieDetailCommentsView from "./MovieDetailComments.view";
-import { useInjection } from "@/app/page";
+import { useInjection } from "@/app/di/DiContext";
 import { Comment } from "../../../domain/comments/Comment";
 
 type Props = {
